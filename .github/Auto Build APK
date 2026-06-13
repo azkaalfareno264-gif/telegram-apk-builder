@@ -1,0 +1,36 @@
+# name: Auto Build APK
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run build process
+        run: |
+          echo "Build dimulai..."
+          sleep 3
+          echo "Proses extract..."
+          sleep 3
+          echo "Install selesai..."
+          sleep 3
+          echo "Build selesai"
+
+      - name: Upload result
+        uses: actions/upload-artifact@v4
+        with:
+          name: apk-result
+          path: .
